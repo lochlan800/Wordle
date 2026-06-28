@@ -322,6 +322,7 @@
 
   <footer>Est. MMXXVI · By Invitation</footer>
 
+<script src="dictionary.js"></script>
 <script>
 (function () {
   "use strict";
@@ -344,6 +345,12 @@
 
   const ROWS = 6;
   const COLS = 5;
+
+  // Set of valid guess words (loaded from dictionary.js). Answer words are
+  // always included so the secret is itself a legal guess.
+  const VALID_WORDS = new Set(
+    (window.WORDLE_DICTIONARY || []).concat(WORDS)
+  );
 
   let secret = "";
   let currentRow = 0;
@@ -452,6 +459,12 @@
     if (currentCol < COLS) {
       shakeRow();
       showMessage("Not enough letters", 1000);
+      return;
+    }
+
+    if (!VALID_WORDS.has(guess)) {
+      shakeRow();
+      showMessage("Not in word list", 1200);
       return;
     }
 
