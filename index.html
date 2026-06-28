@@ -166,6 +166,17 @@
     100% { transform: rotateX(0); }
   }
 
+  /* Correct tiles get a little celebratory pulse after the flip */
+  .tile.reveal.correct {
+    animation: flip 0.55s ease forwards, correctPulse 0.5s ease 0.55s;
+  }
+
+  @keyframes correctPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(83,141,78,0); }
+    50% { transform: scale(1.09); box-shadow: 0 0 16px rgba(83,141,78,0.7); }
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(83,141,78,0); }
+  }
+
   .row.shake {
     animation: shake 0.5s;
   }
