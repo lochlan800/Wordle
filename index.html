@@ -511,6 +511,7 @@
   }
 
   // ---------- State ----------
+  let idSeq = Date.now();
   let state = load();
 
   function load() {
@@ -533,7 +534,6 @@
       return newCard(s[0], s[1], i);
     });
   }
-  let idSeq = Date.now();
   function newCard(front, back) {
     return {
       id: (idSeq++).toString(36) + Math.random().toString(36).slice(2, 6),
